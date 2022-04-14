@@ -1,0 +1,339 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Registration_Form extends JFrame implements ActionListener
+{
+    JFrame f,f1;
+    JButton b;
+    JTextArea a,a1;
+    JTextField t1,t2,t3,t4,t5;
+    JRadioButton g1,g2,g3,c1,c2,c3,c4;
+    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,msg;
+    JComboBox st;
+    JCheckBox c;
+    JSpinner sp1,sp2,sp3;
+    SpinnerModel m1,m2,m3;
+    Registration_Form()
+    {
+        f=new JFrame("Registration Form");
+        f.setSize(700,650);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setLayout(null);
+        f.setResizable(false);
+        f.setLocationRelativeTo(null);
+
+        l1=new JLabel("First Name:");
+        l2=new JLabel("Last Name:");
+        l3=new JLabel("Address:");
+        l1.setBounds(10,20,70,50);
+        l2.setBounds(10,60,70,50);
+        l3.setBounds(10,110,70,50);
+        f.add(l1);
+        f.add(l2);
+        f.add(l3);
+
+        t1=new JTextField();
+        t2=new JTextField();
+        t1.setBounds(100,30,100,30);
+        t2.setBounds(100,70,100,30);
+        f.add(t1);
+        f.add(t2);
+        
+        m1=new SpinnerNumberModel(1,1,31,1);
+        String mon[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+        m2=new SpinnerListModel(mon);
+        String currentyear=String.valueOf(java.time.Year.now());
+        int cy=Integer.parseInt(currentyear);
+        m3=new SpinnerNumberModel(cy,1901,cy,1);
+        sp1=new JSpinner(m1);
+        sp2=new JSpinner(m2);
+        sp3=new JSpinner(m3);
+        l10=new JLabel("Birth Date:");
+        l10.setBounds(300,40,70,50);
+        f.add(l10);
+        sp1.setBounds(370,50,40,30);
+        sp2.setBounds(450,50,80,30);
+        sp3.setBounds(550,50,80,30);
+        f.add(sp1);
+        f.add(sp2);
+        f.add(sp3);
+        l11=new JLabel("Day");
+        l12=new JLabel("Month");
+        l13=new JLabel("Year");
+        l11.setBounds(370,20,40,30);
+        l12.setBounds(470,20,80,30);
+        l13.setBounds(570,20,80,30);
+        f.add(l11);
+        f.add(l12);
+        f.add(l13);
+        
+        a=new JTextArea();
+        a.setBounds(100,110,190,70);
+        a.setLineWrap(true);
+        f.add(a);
+
+        g1=new JRadioButton("Male");
+        g2=new JRadioButton("Female");
+        g3=new JRadioButton("Others");
+        ButtonGroup gender=new ButtonGroup();
+        gender.add(g1);
+        gender.add(g2);
+        gender.add(g3);
+        g1.setSelected(true);
+        l4=new JLabel("Gender:");
+        l4.setBounds(10,200,100,30);
+        f.add(l4);
+        g1.setBounds(20,230,100,30);
+        g2.setBounds(120,230,100,30);
+        g3.setBounds(220,230,100,30);
+        f.add(g1);
+        f.add(g2);
+        f.add(g3);
+
+        c1=new JRadioButton("General");
+        c2=new JRadioButton("SC");
+        c3=new JRadioButton("ST");
+        c4=new JRadioButton("OBC");
+        ButtonGroup caste=new ButtonGroup();
+        caste.add(c1);
+        caste.add(c2);
+        caste.add(c3);
+        caste.add(c4);
+        c1.setSelected(true);
+        l5=new JLabel("Caste:");
+        l5.setBounds(10,270,100,30);
+        f.add(l5);
+        c1.setBounds(20,300,100,30);
+        c2.setBounds(120,300,100,30);
+        c3.setBounds(220,300,100,30);
+        c4.setBounds(320,300,100,30);
+        f.add(c1);
+        f.add(c2);
+        f.add(c3);
+        f.add(c4);
+
+        l6=new JLabel("State:");
+        l6.setBounds(10,350,100,30);
+        f.add(l6);
+
+        String[] sta={"Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chattisgarh","Goa","Gujrat","Haryana","Himachal Pradesh","Jharkhand","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odhisa","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu","Government of NCT of Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry"};
+        st=new JComboBox(sta);
+        st.setBounds(60,350,200,30);
+        f.add(st);
+
+        l7=new JLabel("City:");
+        l7.setBounds(10,400,100,30);
+        f.add(l7);
+        t3=new JTextField("");
+        t3.setBounds(80,400,100,30);
+        f.add(t3);
+
+        l8=new JLabel("PIN Code:");
+        l8.setBounds(10,440,100,30);
+        f.add(l8);
+        t4=new JTextField("");
+        t4.setBounds(80,440,100,30);
+        f.add(t4);
+
+        l9=new JLabel("Phone Number:");
+        l9.setBounds(10,480,100,30);
+        f.add(l9);
+        t5=new JTextField("");
+        t5.setBounds(110,480,130,30);
+        f.add(t5);
+
+        c=new JCheckBox("Click here to verify before submission");
+        c.setBounds(220,540,300,20);
+        f.add(c);
+
+        b=new JButton("Submit");
+        b.setBounds(300,580,90,30);
+        f.add(b);
+        b.addActionListener(this);
+
+        msg=new JLabel();
+        msg.setBounds(270,520,300,20);
+        msg.setForeground(Color.RED);
+        f.add(msg);
+
+        f1=new JFrame("Printed Form");
+        f1.setSize(400,400);
+        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f1.setLayout(null);
+        f1.setResizable(false);
+        f1.setLocationRelativeTo(null);
+
+        a1=new JTextArea();
+        a1.setEditable(false);
+        a1.setFont(new Font("Times New Roman",Font.BOLD,14));
+        a1.setBounds(10,30,370,300);
+        f1.add(a1);
+
+        f.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        if(c.isSelected())
+        {
+            String name=t1.getText()+" "+t2.getText();
+
+            String address=a.getText();
+            String gen="";
+            if(g1.isSelected())
+            {
+                gen="Male";
+            }
+            if(g2.isSelected())
+            {
+                gen="Female";
+            }
+            if(g3.isSelected())
+            {
+                gen="Others";
+            }
+            String cas="";
+            if(c1.isSelected())
+            {
+                cas="General";
+            }
+            if(c2.isSelected())
+            {
+                cas="SC";
+            }
+            if(c3.isSelected())
+            {
+                cas="ST";
+            }
+            if(c4.isSelected())
+            {
+                cas="OBC";
+            }
+
+            String state=(String)st.getSelectedItem();
+
+            String city=t3.getText();
+
+            String pin=t4.getText();
+
+            String phone=t5.getText();
+            
+            String dob=(String)(sp1.getValue()+" "+sp2.getValue()+", "+sp3.getValue());
+
+            int c1=0,x=0;
+            for (int i=0;i<phone.length();i++)
+            {
+                if(phone.charAt(i)!='0' && phone.charAt(i)!='1' && phone.charAt(i)!='2' && phone.charAt(i)!='3' && phone.charAt(i)!='4' && phone.charAt(i)!='5' && phone.charAt(i)!='6' && phone.charAt(i)!='7' && phone.charAt(i)!='8' && phone.charAt(i)!='9')
+                {
+                    c1++;
+                }
+            }
+            if(c1!=0 || phone.length()!=10)
+            {
+                x++;
+            }
+            int c6=0,c7=0,y=0;
+            try
+            {
+                int p=Integer.parseInt(pin);
+                int p1=p/10000;
+                int p2=(p/1000)%10;
+                String p3=pin.substring(3,6);
+                int c2=0,c3=0,c4=0,c5=0;
+
+                if(p1<11 || (p1>85 && p1<90) || p1>99)
+                {
+                    c2++;
+                }
+                if(p2!=0 && p2!=1 && p2!=2 && p2!=3 && p2!=4 && p2!=5 && p2!=6 && p2!=7 && p2!=8 && p2!=9)
+                {
+                    c3++;
+                }
+                for(int i=0;i<p3.length();i++)
+                {
+                    if(p3.charAt(i)!='0' && p3.charAt(i)!='1' && p3.charAt(i)!='2' && p3.charAt(i)!='3' && p3.charAt(i)!='4' && p3.charAt(i)!='5' && p3.charAt(i)!='6' && p3.charAt(i)!='7' && p3.charAt(i)!='8' && p3.charAt(i)!='9')
+                    {
+                        c4++;
+                    }
+                }
+                if(pin.length()!=6)
+                {
+                    c5++;
+                }
+                if(c2>0 || c3>0 || c4>0 || c5>0)
+                {
+                    y++;
+                }
+            }
+            catch(NumberFormatException e1)
+            {
+                c6++;
+            }
+            catch(StringIndexOutOfBoundsException e1)
+            {
+                c7++;
+            }
+            
+            int d=(Integer)sp1.getValue();
+            int ye=(Integer)sp3.getValue();
+            String m=(String)sp2.getValue();
+            int c8=0,c9=0,c10=0,z=0;
+            if((ye%4==0 && ye%100!=0) || (ye%400==0))
+            {
+                c8++;
+            }
+            if(c8>0)
+            {
+                if(m.equalsIgnoreCase("February") && d>29)
+                {
+                    c9++;
+                }
+            }
+            else
+            {
+                if(m.equalsIgnoreCase("February") && d>28)
+                {
+                    c10++;
+                }
+            }
+            if(c9>0 || c10>0)
+            {
+                z++;
+            }
+            
+            if(name.equals("")||address.equals("")||gen.equals("")||cas.equals("")||state.equals("")||city.equals("")||pin.equals("")||phone.equals(""))
+            {
+                msg.setText("You left a field empty!");
+            }
+            else if(x>0)
+            {
+                msg.setText("Wrong phone number/phone number format!");
+            }
+            else if(y>0 || c6>0 || c7>0)
+            {
+                msg.setText("Wrong PIN code/PIN code format!");
+            }
+            else if(z>0)
+            {
+                msg.setText("Wrong date/date format!");
+            }
+            else
+            {
+                a1.setText("Name: "+name+"\n\n"+"Adress: "+address+"\n\n"+"Gender: "+gen+"\n\n"+"Caste: "+cas+"\n\n"+"State: "+state+"\n\n"+"City: "+city+"\n\n"+"Pin Code: "+pin+"\n\n"+"Phone number: "+phone+"\n\n"+"Date of Birth: "+dob);
+
+                f1.setVisible(true);
+                f.setVisible(false);
+            }
+        }
+        else
+        {
+            msg.setText("Please verify the checkbox");
+
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        new Registration_Form();
+    }
+}
